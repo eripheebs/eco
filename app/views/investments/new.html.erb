@@ -1,0 +1,29 @@
+<div class="clear-top col-sm-10 offset-sm-1 col-md-4 offset-md-4 nf-form">
+  <h2>Submit a new investment</h2>
+
+  <%= form_for @investment do |f| %>
+    <p class="field">
+      <%= f.label "Enter your title:" %><br>
+      <%= f.text_field :title, placeholder: "Enter title", value: params[:title], required: true %>
+    </p>
+    <p class="field">
+      <%= f.label "Enter description:" %><br>
+      <%= f.text_area :description, placeholder: "Enter description", value: params[:description], required: false %>
+    </p>
+    <p class="field">
+      <%= f.label "Enter ngo:" %><br>
+      <%= f.text_field :ngo, placeholder: "Enter ngo", value: params[:ngo], required: false %>
+    </p>
+    <p class="field">
+      <%= f.label "Enter industry:" %><br>
+      <%= f.text_field :ngo, placeholder: "Enter industry", value: params[:industry], required: false %>
+    </p>
+    <p class="field">
+      <%= f.label "Enter contact email:" %><br>
+      <%= f.text_field :contact_email, placeholder: "Enter contact email", value: params[:contact_email], required: false %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>

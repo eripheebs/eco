@@ -1,0 +1,25 @@
+<div class="details-page">
+  <a href="/investments?title=<%= @investment.title %>">&lt; Back to results</a>
+  <div class="investment-card">
+    <div class="investment-header">
+      <span class="investment-title"><%= @investment.title %></span>
+      <%if @investment.description %>
+      <span> Description: <%= @investment.description %></span>
+      <%end %>
+      <%if @investment.industry %>
+      <span> Industry: <%= @investment.industry %></span>
+      <%end %>
+      <%if @investment.ngo %>
+      <span> Ngo: <%= @investment.ngo %></span>
+      <%end %>
+      <%if @investment.contact_email %>
+      <span> Contact_email: <%= @investment.contact_email %></span>
+      <%end %>
+      <span> Created by: <%= User.find(@investment.user_id).email %></span>
+    </div>
+    <% if user_signed_in? && @investment.user_id == current_user.id %>
+      <%= link_to 'edit', edit_investment_path(@investment) %>
+      <%= link_to 'delete', investment_path(@investment), method: 'delete' %>
+    <% end %>
+  </div>
+</div>

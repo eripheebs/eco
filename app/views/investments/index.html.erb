@@ -1,0 +1,30 @@
+<div class="investments-page">
+  <a href='/'>&lt; Back to search</a>
+  <% if @investments.size == 0 %>
+    <div class="no-results">
+      No results for '<%=@searched_investment%>'.<br />
+      <a href="/investments/new">Add a new investment</a>
+    </div>
+  <% else %>
+    <% @investment_titles.each do |title| %>
+      <div class="row result-card">
+        <div class="col-md-2 col-sm-12"><%= title %></div>
+        <div class="col-md-10 col-sm-12">
+        <% @investments.where(title: title).each do |investment| %>
+          <div class="each-inv">
+            <p><% if not_short(investment.description) %>
+              <%=cut_short(investment.description)%>...
+              <%else%>
+              <%=investment.description%>
+              <%end%>
+            </p>
+            <p><%=investment.ngo%></p>
+            <div class="more-link"><a href="investments/<%=investment.id%>">More</a></div>
+          </div>
+        <% end %>
+        <%= link_to "Add new investment", new_investment_path(title: 'E.g. Solar Panel Initiative') %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
