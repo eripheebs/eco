@@ -1,0 +1,29 @@
+<div class="researches-page">
+  <a href='/'>&lt; Back to search</a>
+  <% if @researches.size == 0 %>
+    <div class="no-results">
+      No results for '<%=@searched_research%>'.<br />
+      <a href="/researches/new">Add a new research</a>
+    </div>
+  <% else %>
+    <% @research_topics.each do |topic| %>
+      <div class="row result-card">
+        <div class="col-md-2 col-sm-12"><%= topic %></div>
+        <div class="col-md-10 col-sm-12">
+        <% @researches.where(topic: topic).each do |research| %>
+          <div class="each-research">
+            <p><% if not_short(research.description) %>
+              <%=cut_short(research.description)%>...
+              <%else%>
+              <%=research.description%>
+              <%end%>
+            </p>
+            <div class="more-link"><a href="researches/<%=research.id%>">More</a></div>
+          </div>
+        <% end %>
+        <%= link_to "Add new research", new_research_path(topic: 'E.g. The impact of beehives in the city') %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

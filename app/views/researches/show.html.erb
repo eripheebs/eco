@@ -1,0 +1,16 @@
+<div class="details-page">
+  <a href="/researches?topic=<%= @research.topic %>">&lt; Back to results</a>
+  <div class="research-card">
+    <div class="research-header">
+      <span class="research-topic"><%= @research.topic %></span>
+      <%if @research.description %>
+      <span> Description: <%= @research.description %></span>
+      <%end %>
+      <span> Created by: <%= User.find(@research.user_id).email %></span>
+    </div>
+    <% if user_signed_in? && @research.user_id == current_user.id %>
+      <%= link_to 'edit', edit_research_path(@research) %>
+      <%= link_to 'delete', research_path(@research), method: 'delete' %>
+    <% end %>
+  </div>
+</div>

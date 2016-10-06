@@ -1,5 +1,5 @@
 class ResearchesController < ApplicationController
-  include ResearchsHelper
+  include ResearchesHelper
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
@@ -43,5 +43,4 @@ class ResearchesController < ApplicationController
   def destroy
     @research = Research.find(params[:id])
   end
-end
 end
